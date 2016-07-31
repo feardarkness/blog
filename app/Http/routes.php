@@ -1,17 +1,6 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-/*
 Route::get('/', function () {
 	$people = ['Carla', 'Ariel', 'Amor', 'Ariel Malo'];
 	// compact($people)    se convierte en 		["people" => $people]
@@ -41,3 +30,9 @@ Route::get('/about', function () {
 Route::get('/about2', function () {
     return view('pages.about');		// resources/views/about.blade.php
 });
+
+Route::get('/cards', 'CardsController@index');
+
+Route::get('/cards/{card}', 'CardsController@show');
+
+Route::post('/cards/{card}/notes', 'NotesController@addNote');
