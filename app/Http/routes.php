@@ -11,6 +11,7 @@
 |
 */
 
+/*
 Route::get('/', function () {
 	$people = ['Carla', 'Ariel', 'Amor', 'Ariel Malo'];
 	// compact($people)    se convierte en 		["people" => $people]
@@ -27,6 +28,11 @@ Route::get('/', function () {
 
 	// another way  	return View::make();
 });
+*/
+
+Route::get('/', 'PagesController@home');
+
+Route::get('/about3', 'PagesController@about3');
 
 Route::get('/about', function () {
     return view('about');		// resources/views/about.blade.php
