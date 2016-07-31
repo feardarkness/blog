@@ -22,8 +22,10 @@ Route::get('/', function () {
     // another way
 	//return view('welcome')->with("people", $people);
 
-	// even another way
+	// even another way, can be chained		->with()->with()->with()
 	//return view('welcome')->withPeople($people);
+
+	// another way  	return View::make();
 });
 
 Route::get('/about', function () {
