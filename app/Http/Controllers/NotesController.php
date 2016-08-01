@@ -10,7 +10,7 @@ use App\Card;
 
 class NotesController extends Controller
 {
-    public function addNote(Request $request, Card $card){
+    public function add(Request $request, Card $card){
     	/* One way to save
     	$note = new Note;
     	$note->body = $request->body;
@@ -40,6 +40,15 @@ class NotesController extends Controller
     	//return redirect('/another/uri');
 
     	// para volver a donde estabamos
+    	return back();
+    }
+
+    public function edit(Note $note){
+    	return view('notes.edit', compact('note'));
+    }
+
+    public function update(Request $request, Note $note){
+    	$note->update($request->all());
     	return back();
     }
 }
