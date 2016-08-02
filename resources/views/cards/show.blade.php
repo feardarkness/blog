@@ -6,12 +6,16 @@
 		<p>Titulo: {{$card->title}}</p>
 		<ul class="list-group">
 			@foreach ($card->notes as $note)
-				<li class="list-group-item">{{$note->body}}</li>
+				<li class="list-group-item">{{$note->body}}
+					<small>{{ $note->usuario}}</small>
+				</li>
+
 			@endforeach
 		</ul>
 		<hr>
 		<h3>Add new note</h3>
 		<form method="POST" action="/cards/{{$card->id}}/notes">
+			<input type="hidden" name="user_id" value="1">
 			<div class="form-group">
 				<textarea name="body" class="form-control"></textarea>
 			</div>
