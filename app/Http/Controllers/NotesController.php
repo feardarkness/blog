@@ -11,28 +11,35 @@ use App\Card;
 class NotesController extends Controller
 {
     public function add(Request $request, Card $card){
+        // VALIDATION
+        $this->validate($request, [
+            "body" => "required"
+        ]);
+
+
     	/* One way to save
     	$note = new Note;
     	$note->body = $request->body;
     	$card->notes()->save($note);
 		*/
 		
-		/* Another one
+		/* Another way to save
 		$note = new Note(['body' => $request->body]);
 		$card->notes()->save($note);
 		*/
 
-		/* Another
+		/* Another way to save
 		$card->notes()->create(['body' => $request->body]);
 		*/
 
-		/* Another one		
+		/* Another way to save
 		$card->notes()->create($request->all());
 		*/
 
-		$card->addNote(
-			new Note($request->all())
-		);
+        $note = new Note($request->all());
+        $note->user_id = 1;
+
+		$card->addNote($note);
 
     	// formas de redireccionar
     	//return \Redirect::to('/some/new/uri');

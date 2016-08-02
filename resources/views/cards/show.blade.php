@@ -2,24 +2,32 @@
 
 @section('content')
 	<div class="col-md-6 col-md-offset-3">
-		<h1>Tarjeta {{$card->id}}</h1>
-		<p>Titulo: {{$card->title}}</p>
+		<h1>Tarjeta {{ $card->id }}</h1>
+		<p>Titulo: {{ $card->title }}</p>
 		<ul class="list-group">
 			@foreach ($card->notes as $note)
-				<li class="list-group-item">{{$note->body}} 
-					<a href="#"><small>{{$note->user->username or 'No User'}}</small></a>
-					<a href="/notes/{{$note->id}}/edit" class="btn btn-primary">Update</a>
+				<li class="list-group-item">{{ $note->body }} 
+					<a href="#"><small>{{ $note->user->username or 'No User' }}</small></a>
+					<a href="/notes/{{ $note->id }}/edit" class="btn btn-primary pull-right">Update</a>
 				</li>
 			@endforeach
 		</ul>
 		<hr>
 		<h3>Add new note</h3>
-		<form method="POST" action="/cards/{{$card->id}}/notes">
-			<input type="hidden" name="user_id" value="1">
+		<form method="POST" action="/cards/{{ $card->id }}/notes">
 			<div class="form-group">
-				<textarea name="body" class="form-control"></textarea>
+				<textarea name="body" class="form-control">{{ old('body') }}</textarea>
 			</div>
-			<input type="hidden" name="_token" value="{{csrf_token()}}">
+			<!--input type="hidden" name="_token" value="{{ csrf_token() }}"-->
+			{{ csrf_field() }}
+			@if (count($errors))
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+					
+				</ul>
+			@endif
 			<button type="submit" class="btn btn-primary">Add note</button>
 		</form>
 	</div>
