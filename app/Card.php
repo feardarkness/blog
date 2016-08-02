@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
+	// este metodo se esta llamando con el eager loading
 	public function notes(){
 		return $this->hasMany(Note::class);	
 	}

@@ -37,11 +37,21 @@ class CardsController extends Controller
 
     public function show(Card $card){
     	// laravel se encarga de buscar automaticamente un objeto Card por el id enviado :D
-    	return view('cards.show', compact('card'));
+    	// return view('cards.show', compact('card'));
+
     	// para buscar una tarjeta
     	/*
     	$card = Card::find($id);
     	return view('cards.show', compact('card'));
     	*/
+
+        /* Para hacer eager loading, o sea cargar todo lo necesario con un solo query
+        */
+        //$card = Card::with('notes')->all();
+        //$card = Card::with('notes.user')->find(1);
+
+        $card->load('notes.user');
+        return view('cards.show', compact('card'));
+
     }
 }

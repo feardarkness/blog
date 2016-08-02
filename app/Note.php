@@ -15,4 +15,10 @@ class Note extends Model
     public function addNote(Note $note){
     	return $this->notes()->save($note);
     }
+
+    public function user(){
+    	return $this->belongsTo(User::class);	
+    }
+
+    
 }

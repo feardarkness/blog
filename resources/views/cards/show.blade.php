@@ -6,10 +6,10 @@
 		<p>Titulo: {{$card->title}}</p>
 		<ul class="list-group">
 			@foreach ($card->notes as $note)
-				<li class="list-group-item">{{$note->body}}
-					<small>{{ $note->usuario}}</small>
+				<li class="list-group-item">{{$note->body}} 
+					<a href="#"><small>{{$note->user->username or 'No User'}}</small></a>
+					<a href="/notes/{{$note->id}}/edit" class="btn btn-primary">Update</a>
 				</li>
-
 			@endforeach
 		</ul>
 		<hr>
